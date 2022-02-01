@@ -6,8 +6,9 @@ let library = [
 ];
 
 const newBookButton = document.querySelector('#new-book');
+const hiddenForm = document.querySelector('#hidden-form');
 newBookButton.addEventListener('click', () => {
-    console.log('clicked');
+    hiddenForm.classList.toggle('hidden');
 });
 
 displayEachBook();
