@@ -21,7 +21,6 @@ fieldset {
 button, input, select, textarea {
     font-family: inherit;
     font-size: 100%;
-    -webkit-appearance: none;
 }
 
 input {
@@ -69,4 +68,9 @@ th {
 
 .hidden {
     display: none;
+}
+
+#isRead {
+    width: 2.3rem;
+    height: 2.3rem;
 }
