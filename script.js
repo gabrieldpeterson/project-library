@@ -1,10 +1,9 @@
-let library = [
-    new Book("author100", "title100", 434, false),
-    new Book("author1", "title1", 25, true),
-    new Book("author2", "title2", 32, true),
-    new Book("author3", "title3", 55, false),
-    new Book("author4", "title4", 233, true),
-];
+let library = [];
+library.push(new Book("author1", "title1", 34, false));
+library.push(new Book("author2", "title2", 4224, false));
+library.push(new Book("author3", "title3", 454, true));
+library.push(new Book("author4", "title4", 12434, true));
+library.push(new Book("author5", "title5", 5, false));
 
 displayEachBook();
 
@@ -27,6 +26,7 @@ submitButton.addEventListener('click', () => {
 });
 
 function Book(author, title, numPages, isRead) {
+    this.id = library.length;
     this.author = author,
     this.title = title,
     this.numPages = numPages,
@@ -38,6 +38,7 @@ function addBookToLibrary(bookTitle) {
 }
 
 function displayEachBook() {
+
     library.forEach((bk) => {
         const table = document.querySelector("#books");
         let newRow = document.createElement("tr");
@@ -45,6 +46,15 @@ function displayEachBook() {
         let titleCell = document.createElement("td");
         let numPagesCell = document.createElement("td");
         let isReadCell = document.createElement("td");
+        let deleteButtonCell = document.createElement("td");
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.addEventListener('click', () => {
+            library.splice(bk.id, 1);
+            refreshTable();
+            displayEachBook();
+        });
 
         authorCell.textContent = bk.author;
         titleCell.textContent = bk.title;
@@ -56,6 +66,8 @@ function displayEachBook() {
         newRow.appendChild(titleCell);
         newRow.appendChild(numPagesCell);
         newRow.appendChild(isReadCell);
+        newRow.appendChild(deleteButtonCell);
+        deleteButtonCell.appendChild(deleteButton);
     });
 }
 
@@ -73,10 +85,13 @@ function refreshTable() {
     thPage.textContent = "Page Count";
     const thRead = document.createElement('th');
     thRead.textContent = "Read";
+    const thDelete = document.createElement('th');
+    thDelete.textContent = "Delete";
 
     bookTable.appendChild(tr);
     tr.appendChild(thAuthor);
     tr.appendChild(thTitle);
     tr.appendChild(thPage);
     tr.appendChild(thRead);
+    tr.appendChild(thDelete);
 }
